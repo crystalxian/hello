@@ -1,0 +1,145 @@
+\documentclass{ctexart}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[colorlinks,linkcolor=blue,citecolor=green,anchorcolor=blue]{hyperref}
+\author{董泽贤\\2013011182}
+\title{数字图像处理作业}
+\begin{document}
+\makeatletter %使\section中的内容左对齐
+\renewcommand{\section}{\@startsection{section}{1}{0mm}
+  {-\baselineskip}{0.5\baselineskip}{\bf\leftline}}
+\makeatother
+\maketitle
+\section {题目2-1}
+\begin{flushleft}
+平移变换矩阵T~~(X方向平移量是Y方向平移量的一半)
+\[\ \boldsymbol{T} =
+\left[
+\begin{array}{ccc}
+1 & 0 & T_x \\
+0 & 1 & 2T_x \\
+0 & 0 & 1
+\end{array}
+\right]
+\]
+尺度变换矩阵S~~(X方向放缩量是Y方向放缩量的两倍)
+\[\ \boldsymbol{S} =
+\left[
+\begin{array}{ccc}
+2S_y & 0 & 0 \\
+0 & S_y & 0 \\
+0 & 0 & 1
+\end{array}
+\right]
+\]
+(5,10)先经过平移变换后尺度变换结果
+\[
+\left[
+\begin{array}{c}
+10S_y+2S_yT_x\\
+10S_y+2S_yT_x\\
+1
+\end{array}
+\right]
+=
+\left[
+\begin{array}{ccc}
+2S_y & 0 & 0 \\
+0 & S_y & 0 \\
+0 & 0 & 1
+\end{array}
+\right]
+%
+\left[
+\begin{array}{ccc}
+1 & 0 & T_x \\
+0 & 1 & 2T_x \\
+0 & 0 & 1
+\end{array}
+\right]
+%
+\left[
+\begin{array}{c}
+5\\
+10\\
+1
+\end{array}
+\right]
+\]
+(5,10)先经过尺度变换后平移变换结果
+\[
+\left[
+\begin{array}{c}
+10S_y+T_x\\
+10S_y+2T_x\\
+1
+\end{array}
+\right]
+=
+\left[
+\begin{array}{ccc}
+1 & 0 & T_x \\
+0 & 1 & 2T_x \\
+0 & 0 & 1
+\end{array}
+\right]
+%
+\left[
+\begin{array}{ccc}
+2S_y & 0 & 0 \\
+0 & S_y & 0 \\
+0 & 0 & 1
+\end{array}
+\right]
+%
+\left[
+\begin{array}{c}
+5\\
+10\\
+1
+\end{array}
+\right]
+\]
+通过上面的计算结果可以看出，变换级联的效果与变换的次序有关，所以变换矩阵的次序不能随意更换。
+%\end{flushleft}
+\section {题目3-11}
+%\begin{flushleft}
+(1)~~该算法的效果特点\\
+根据算法描述,可以看出其能平滑图像,模糊轮廓,有空域平滑滤波的效果
+
+\begin{figure}[h]
+\centering
+\subfigure[原图]{
+\label{Fig.sub.0}
+\includegraphics[width=0.3\textwidth]{Lena0.eps}}
+\subfigure[一次操作]{
+\label{Fig.sub.1}
+\includegraphics[width=0.3\textwidth]{lena1.eps}}
+\subfigure[五次操作]{
+\label{Fig.sub.2}
+\includegraphics[width=0.3\textwidth]{lena3.eps}}
+\caption{Matlab编程实现结果}
+\label{Fig.lable}
+\end{figure}
+Matlab编程印证了其平滑滤波的效果
+\href{https://github.com/crystalxian/hello.git}{代码}\\
+
+~\\
+(2)~~反复利用该算法，得到的效果\\
+~~~~反复利用本算法，可以抹平轮廓
+\begin{figure}[h]
+\centering
+\subfigure[原图]{
+\label{Fig.sub.0}
+\includegraphics[width=0.4\textwidth]{Lena0.eps}}
+\subfigure[二十次操作]{
+\label{Fig.sub.3}
+\includegraphics[width=0.4\textwidth]{lena4.eps}}
+\caption{反复利用该算法结果}
+\label{Fig.lable1}
+\end{figure}
+\end{flushleft}
+\newpage
+\end{document}
